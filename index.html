@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getha Korea — Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ROOT VARIABLES
+   ============================================================ */
+:root {
+  --bg: #fbfaf4;
+  --primary: #1f2b27;
+  --primary-80: rgba(31,43,39,0.08);
+  --sage: #8b9e99;
+  --linen: #e8e3d5;
+  --pale: #c5d3cf;
+  --bark: #3d4f3c;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --nav-h: 64px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   SCROLL FADE-IN
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(251,250,244,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(31,43,39,0.08);
+  z-index: 100;
+}
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--primary); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #2c3d38 0%, #1a2420 40%, #0f1a17 100%);
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15,26,23,0.85) 0%, transparent 60%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pale);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: heroFade 1s ease 0.3s forwards;
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(56px, 9vw, 120px);
+  font-weight: 300;
+  line-height: 0.92;
+  color: var(--bg);
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: heroFade 1s ease 0.6s forwards;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--pale);
+}
+.hero-sub {
+  margin-top: 28px;
+  font-size: 14px;
+  color: rgba(251,250,244,0.55);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: heroFade 1s ease 0.9s forwards;
+}
+@keyframes heroFade {
+  to { opacity: 1; }
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: heroFade 1s ease 1.2s forwards;
+}
+.hero-scroll span {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,250,244,0.4);
+  writing-mode: vertical-rl;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(197,211,207,0.6), transparent);
+  animation: scrollPulse 2s ease-in-out infinite 1.5s;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.6; }
+  50% { transform: scaleY(0.5); opacity: 1; }
+}
+
+/* ============================================================
+   SECTION COMMON
+   ============================================================ */
+section { padding: 120px 40px; }
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: 60px;
+}
+.section-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--sage);
+  margin: 20px 0 48px;
+}
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   DESIGN GUIDE — COLOR
+   ============================================================ */
+#design { background: var(--bg); }
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 80px;
+}
+.color-swatch {
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(31,43,39,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.color-swatch:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(31,43,39,0.12);
+}
+.swatch-block {
+  height: 120px;
+  transition: filter 0.2s ease;
+}
+.swatch-info {
+  padding: 12px 14px;
+  background: white;
+}
+.swatch-role {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 2px;
+}
+.swatch-name {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+.swatch-hex {
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  color: var(--sage);
+}
+.copy-toast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(31,43,39,0.9);
+  color: var(--bg);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+.color-swatch.copied .copy-toast {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ============================================================
+   DESIGN GUIDE — TYPOGRAPHY
+   ============================================================ */
+.typo-section { margin-bottom: 80px; }
+.typo-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  border-bottom: 1px solid var(--linen);
+  padding-bottom: 12px;
+  margin-bottom: 32px;
+}
+.typo-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.typo-serif-demo {
+  font-family: var(--font-serif);
+}
+.typo-size-display {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--primary);
+}
+.typo-size-heading {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--primary);
+}
+.typo-size-subheading {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--bark);
+}
+.typo-body-demo {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--primary);
+  opacity: 0.75;
+}
+.typo-meta {
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+}
+.typo-abc {
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: var(--pale);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   BRAND VOICE
+   ============================================================ */
+#voice { background: var(--primary); color: var(--bg); }
+#voice .section-eyebrow { color: var(--pale); }
+#voice .section-title { color: var(--bg); }
+#voice .section-divider { background: var(--sage); }
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.voice-card {
+  padding: 40px 36px;
+  background: rgba(31,43,39,0.5);
+  transition: background var(--transition);
+}
+.voice-card:hover { background: rgba(255,255,255,0.04); }
+.voice-number {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 300;
+  color: rgba(197,211,207,0.3);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.voice-keyword {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--pale);
+  margin-bottom: 12px;
+}
+.voice-desc {
+  font-size: 14px;
+  color: rgba(251,250,244,0.5);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   MOODBOARD
+   ============================================================ */
+#moodboard { background: var(--bg); }
+.masonry {
+  columns: 4 220px;
+  column-gap: 12px;
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.masonry-item:hover img { transform: scale(1.04); }
+.masonry-item.tall { }
+.masonry-item.normal { }
+.masonry-item.short { }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--primary);
+  color: rgba(251,250,244,0.4);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+footer .footer-logo {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: rgba(251,250,244,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+footer .footer-meta { font-size: 12px; letter-spacing: 0.05em; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  #hero { padding: 0 24px 60px; }
+  section { padding: 80px 24px; }
+  .masonry { columns: 2 150px; }
+  .typo-showcase { grid-template-columns: 1fr; }
+  footer { padding: 32px 24px; flex-direction: column; }
+}
+@media (max-width: 480px) {
+  .masonry { columns: 2 120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ★ 이미지 & 텍스트 설정 — 여기만 수정하세요
+     ============================================================ -->
+<script>
+const CONFIG = {
+
+  /* 브랜드명 */
+  brandName: "Getha Korea",
+
+  /* Hero 슬로건 */
+  heroTagline: "16년의 결",
+  heroTaglineEm: "",          // 이탤릭 강조 텍스트 (없으면 비워두세요)
+  heroSub: "Brand & Design Guide 2025",
+  heroEyebrow: "Internal Brand Guide",
+
+  /* Hero 배경 이미지 URL — 비우면 그라디언트로 표시 */
+  heroBgUrl: "",
+
+  /* 컬러 팔레트 */
+  colors: [
+    { name: "Dark Forest",   hex: "#1f2b27", role: "Primary" },
+    { name: "Warm Ivory",    hex: "#fbfaf4", role: "Background" },
+    { name: "Muted Sage",    hex: "#8b9e99", role: "Secondary" },
+    { name: "Pale Linen",    hex: "#e8e3d5", role: "Surface" },
+    { name: "Deep Bark",     hex: "#3d4f3c", role: "Accent Dark" },
+    { name: "Morning Dew",   hex: "#c5d3cf", role: "Accent Light" },
+  ],
+
+  /* 브랜드 보이스 키워드 */
+  voice: [
+    { keyword: "Natural", desc: "자연에서 온 소재와 철학을 바탕으로, 꾸밈없는 진정성을 전달합니다." },
+    { keyword: "Refined", desc: "불필요한 것을 덜어낸 고요함 속에서 프리미엄의 가치가 드러납니다." },
+    { keyword: "Warm",    desc: "16년간 고객과 쌓아온 신뢰를 따뜻한 언어와 톤으로 표현합니다." },
+    { keyword: "Serene",  desc: "깊고 편안한 수면처럼, 브랜드의 모든 접점은 평온함을 지향합니다." },
+  ],
+
+  /* 무드보드 이미지 배열
+     url   : 이미지 주소 (GitHub 업로드 후 경로 예: ./images/mood-01.jpg)
+     alt   : 대체 텍스트
+     size  : 'tall' | 'normal' | 'short' (높이 비율 결정)
+  */
+  moodboard: [
+    { url: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=85", alt: "Bedroom morning light", size: "tall" },
+    { url: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=85", alt: "Natural linen texture", size: "normal" },
+    { url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=85", alt: "Forest and nature", size: "short" },
+    { url: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=85", alt: "Luxury white bedroom", size: "tall" },
+    { url: "https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600&q=85", alt: "White pillow close up", size: "normal" },
+    { url: "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=600&q=85", alt: "Soft morning atmosphere", size: "short" },
+    { url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=85", alt: "Natural material detail", size: "normal" },
+    { url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85", alt: "Organic green texture", size: "tall" },
+    { url: "https://images.unsplash.com/photo-1490750967868-88df5691cc29?w=600&q=85", alt: "Soft flower petals", size: "normal" },
+    { url: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&q=85", alt: "Calm bedroom corner", size: "short" },
+    { url: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=600&q=85", alt: "Natural green leaves", size: "normal" },
+    { url: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=85", alt: "Modern sofa detail", size: "tall" },
+  ],
+};
+</script>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <div class="nav-logo" id="nav-brand">Getha Korea</div>
+  <ul class="nav-links">
+    <li><a href="#design">Design</a></li>
+    <li><a href="#voice">Brand Voice</a></li>
+    <li><a href="#moodboard">Moodboard</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-bg" id="hero-bg">
+    <img id="hero-img" src="" alt="Brand hero" style="display:none;">
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="hero-eyebrow">Internal Brand Guide</p>
+    <h1 class="hero-title" id="hero-title">
+      <span id="hero-tagline">16년의 결</span>
+      <em id="hero-tagline-em"></em>
+    </h1>
+    <p class="hero-sub" id="hero-sub">Brand &amp; Design Guide 2025</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     DESIGN GUIDE
+     ============================================================ -->
+<section id="design">
+  <div class="container">
+    <p class="section-eyebrow reveal">Design System</p>
+    <h2 class="section-title reveal reveal-delay-1">Color &amp; Typography</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
+
+    <!-- Color Palette -->
+    <p class="typo-label reveal">Color Palette — 클릭하면 HEX 코드가 복사됩니다</p>
+    <div class="color-grid" id="color-grid"></div>
+
+    <!-- Typography -->
+    <p class="typo-label reveal" style="margin-top: 80px;">Typography</p>
+    <div class="typo-showcase reveal">
+      <div>
+        <p class="typo-meta">Display / Heading — Cormorant Garamond</p>
+        <p class="typo-size-display">Getha</p>
+        <p class="typo-abc">Aa Bb Cc 가나다 一二三</p>
+        <p class="typo-size-heading" style="margin-top: 24px;">Naturally Premium</p>
+        <p class="typo-size-subheading" style="margin-top: 12px;">The art of sleep, redefined.</p>
+      </div>
+      <div>
+        <p class="typo-meta">Body / UI — DM Sans</p>
+        <p class="typo-body-demo" style="margin-top: 8px;">
+          게타 코리아는 말레이시아 천연 라텍스 매트리스 브랜드 Getha의 공식 한국 파트너입니다.
+          자연에서 온 소재 그대로의 순수함과 16년간 쌓아온 신뢰를 바탕으로, 깊고 온전한 수면을 제공합니다.
+        </p>
+        <p class="typo-body-demo" style="margin-top: 16px;">
+          The finest sleep begins with nature. Our commitment to natural latex reflects a philosophy
+          of wellness — quiet, refined, and enduring.
+        </p>
+        <p class="typo-meta" style="margin-top: 24px;">Caption / Label — DM Sans 300</p>
+        <p style="font-family:var(--font-sans); font-size:12px; color:var(--sage); letter-spacing:0.15em; text-transform:uppercase; margin-top:6px;">
+          Natural · Refined · Serene · Enduring
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BRAND VOICE
+     ============================================================ -->
+<section id="voice">
+  <div class="container">
+    <p class="section-eyebrow reveal">Brand Character</p>
+    <h2 class="section-title reveal reveal-delay-1">우리가 전하는 것들</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
+    <div class="voice-grid" id="voice-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MOODBOARD
+     ============================================================ -->
+<section id="moodboard">
+  <div class="container">
+    <p class="section-eyebrow reveal">Brand Emotion</p>
+    <h2 class="section-title reveal reveal-delay-1">Moodboard</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
+    <div class="masonry" id="masonry-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <span class="footer-logo" id="footer-brand">Getha Korea</span>
+  <span class="footer-meta">Internal use only · Brand &amp; Design Guide 2025</span>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ---- Apply CONFIG ---- */
+document.getElementById('nav-brand').textContent = CONFIG.brandName;
+document.getElementById('footer-brand').textContent = CONFIG.brandName;
+document.getElementById('hero-eyebrow').textContent = CONFIG.heroEyebrow;
+document.getElementById('hero-tagline').textContent = CONFIG.heroTagline;
+document.getElementById('hero-tagline-em').textContent = CONFIG.heroTaglineEm;
+document.getElementById('hero-sub').textContent = CONFIG.heroSub;
+
+/* Hero Background */
+if (CONFIG.heroBgUrl) {
+  const img = document.getElementById('hero-img');
+  img.src = CONFIG.heroBgUrl;
+  img.style.display = 'block';
+}
+
+/* ---- Color Swatches ---- */
+const grid = document.getElementById('color-grid');
+CONFIG.colors.forEach((c, i) => {
+  const el = document.createElement('div');
+  el.className = `color-swatch reveal reveal-delay-${(i % 4) + 1}`;
+  el.innerHTML = `
+    <div class="swatch-block" style="background:${c.hex}"></div>
+    <div class="swatch-info">
+      <p class="swatch-role">${c.role}</p>
+      <p class="swatch-name">${c.name}</p>
+      <p class="swatch-hex">${c.hex}</p>
+    </div>
+    <div class="copy-toast">복사됨!</div>
+  `;
+
+  /* Copy HEX on click */
+  el.addEventListener('click', () => {
+    navigator.clipboard.writeText(c.hex).then(() => {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1400);
+    }).catch(() => {
+      /* Fallback for non-HTTPS */
+      const ta = document.createElement('textarea');
+      ta.value = c.hex;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1400);
+    });
+  });
+
+  grid.appendChild(el);
+});
+
+/* ---- Brand Voice ---- */
+const vGrid = document.getElementById('voice-grid');
+CONFIG.voice.forEach((v, i) => {
+  const el = document.createElement('div');
+  el.className = `voice-card reveal reveal-delay-${(i % 4) + 1}`;
+  el.innerHTML = `
+    <div class="voice-number">0${i + 1}</div>
+    <div class="voice-keyword">${v.keyword}</div>
+    <div class="voice-desc">${v.desc}</div>
+  `;
+  vGrid.appendChild(el);
+});
+
+/* ---- Masonry Moodboard ---- */
+const masonryEl = document.getElementById('masonry-grid');
+CONFIG.moodboard.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = `masonry-item ${item.size} reveal`;
+  if (i % 3 === 0) el.classList.add('reveal-delay-1');
+  if (i % 3 === 1) el.classList.add('reveal-delay-2');
+  if (i % 3 === 2) el.classList.add('reveal-delay-3');
+
+  const img = document.createElement('img');
+  img.src = item.url;
+  img.alt = item.alt;
+  img.loading = 'lazy';
+
+  el.appendChild(img);
+  masonryEl.appendChild(el);
+});
+
+/* ---- Scroll Reveal (IntersectionObserver) ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
